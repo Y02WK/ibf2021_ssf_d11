@@ -14,10 +14,14 @@ public class MyApplication {
 		SpringApplication app = new SpringApplication(MyApplication.class);
 
 		ApplicationArguments cliArgs = new DefaultApplicationArguments(args);
+
+		String port = "3000";
+
 		if (cliArgs.containsOption("port")) {
-			String port = cliArgs.getOptionValues("port").get(0);
-			app.setDefaultProperties(Collections.singletonMap("server.port", port));
+			port = cliArgs.getOptionValues("port").get(0);
 		}
+
+		app.setDefaultProperties(Collections.singletonMap("server.port", port));
 		app.run(args);
 	}
 }
